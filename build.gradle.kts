@@ -23,10 +23,14 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("io.opentelemetry.api:opentelemetry-api:1.7.0")
-	implementation("io.opentelemetry.instrumentation:opentelemetry-instrumentation-spring-boot-autoconfigure:1.7.0")
-	implementation("org.slf4j:slf4j-api:1.7.32")
-	implementation("org.slf4j:slf4j-simple:1.7.32")
+	implementation("io.opentelemetry:opentelemetry-api:1.34.1")
+	implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-autoconfigure:0.14.0")
+	implementation("io.opentelemetry:opentelemetry-exporters-prometheus:0.9.1")
+	implementation("org.slf4j:slf4j-api:2.0.11")
+	implementation("jakarta.xml.bind:jakarta.xml.bind-api:3.0.1")
+	implementation("org.glassfish.jaxb:jaxb-runtime:3.0.1")
+
+//	testImplementation("org.slf4j:slf4j-simple:2.0.11")
 }
 
 
