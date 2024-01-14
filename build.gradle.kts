@@ -22,15 +22,17 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	implementation("org.jetbrains.kotlin:kotlin-test-junit5:1.9.21")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("io.opentelemetry:opentelemetry-api:1.34.1")
 	implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-autoconfigure:0.14.0")
 	implementation("io.opentelemetry:opentelemetry-exporters-prometheus:0.9.1")
+	testImplementation("io.opentelemetry:opentelemetry-sdk-testing:1.34.1")
 	implementation("org.slf4j:slf4j-api:2.0.11")
 	implementation("jakarta.xml.bind:jakarta.xml.bind-api:3.0.1")
 	implementation("org.glassfish.jaxb:jaxb-runtime:3.0.1")
-
-//	testImplementation("org.slf4j:slf4j-simple:2.0.11")
+	implementation("javax.xml.bind:jaxb-api:2.3.1")
+	implementation("ch.qos.logback:logback-classic")
 }
 
 

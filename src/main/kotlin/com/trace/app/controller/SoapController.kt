@@ -4,10 +4,6 @@ import com.trace.app.dto.request.SoapRequest
 import com.trace.app.dto.response.SoapResponse
 import io.opentelemetry.api.trace.Span
 import io.opentelemetry.api.trace.Tracer
-import jakarta.xml.bind.annotation.XmlAccessType
-import jakarta.xml.bind.annotation.XmlAccessorType
-import jakarta.xml.bind.annotation.XmlElement
-import jakarta.xml.bind.annotation.XmlRootElement
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -56,13 +52,12 @@ class SoapController(private val tracer: Tracer) {
     }
 
     private fun logWithTraceId(message: String) {
-    val currentSpan = Span.current()
-    currentSpan?.let { span ->
-        val traceId = span.spanContext.traceId.toString()
-        // Log TraceId along with the message
-        logger.info("TraceId: $traceId, Event: log, Message: $message")
+        val currentSpan = Span.current()
+        currentSpan?.let { span ->
+            val traceId = span.spanContext.traceId.toString()
+            // Log TraceId along with the message
+            logger.info("TraceId: $traceId, Event: log, Message: $message")
+        }
     }
-
-}
 
 }

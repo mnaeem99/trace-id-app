@@ -5,9 +5,9 @@ import jakarta.xml.bind.annotation.XmlAccessorType
 import jakarta.xml.bind.annotation.XmlElement
 import jakarta.xml.bind.annotation.XmlRootElement
 
-@XmlRootElement(name = "SoapResponse", namespace = "http://www.example.com/")
+@XmlRootElement(name = "SoapResponse")
 @XmlAccessorType(XmlAccessType.FIELD)
 data class SoapResponse(
-    @XmlElement(name = "result", namespace = "http://www.example.com/")
-    val result: String
+    @XmlElement(name = "result")
+    val result: String?
 )
