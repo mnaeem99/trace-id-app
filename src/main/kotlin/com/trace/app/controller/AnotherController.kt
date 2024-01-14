@@ -1,7 +1,5 @@
 package com.trace.app.controller
 
-import com.trace.app.dto.request.SoapRequest
-import com.trace.app.dto.response.SoapResponse
 import io.opentelemetry.api.trace.Span
 import io.opentelemetry.api.trace.Tracer
 import org.slf4j.LoggerFactory
