@@ -59,13 +59,13 @@ class SoapControllerIntegrationTest {
             .build()
 
         // Set the tracer provider for your tracer
-        val tracer: Tracer = tracerProvider.get("your-instrumentation-name")
+        val tracer: Tracer = tracerProvider.get("trace-id-app")
 
         // Set the span processor on the TracerProvider
         SdkTracerProvider.builder().addSpanProcessor(spanProcessor).build()
 
         // Act
-        val span: Span = tracer.spanBuilder("your-span-name").startSpan()
+        val span: Span = tracer.spanBuilder("soap-endpoint").startSpan()
 
         // You can set attributes, events, etc., on the span as needed
         span.setAttribute("key", "value")
