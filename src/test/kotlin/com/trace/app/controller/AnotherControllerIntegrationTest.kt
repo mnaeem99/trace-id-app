@@ -36,9 +36,9 @@ import org.mockito.Mockito.*
 @ExtendWith(SpringExtension::class)
 @SpringBootTest
 @AutoConfigureMockMvc
-class SoapControllerIntegrationTest {
+class AnotherControllerIntegrationTest {
 
-    private val logger = LoggerFactory.getLogger(SoapController::class.java) as Logger
+    private val logger = LoggerFactory.getLogger(AnotherController::class.java) as Logger
     private val listAppender = ListAppender<ILoggingEvent>()
 
     @Autowired
@@ -48,7 +48,7 @@ class SoapControllerIntegrationTest {
     private lateinit var webApplicationContext: WebApplicationContext
 
     @Test
-    fun `soapGETEndpoint should process SOAP request and include TraceId in logs`() {
+    fun `anotherGETEndpoint should process SOAP request and include TraceId in logs`() {
         // Arrange
         listAppender.start()
         logger.addAppender(listAppender)
@@ -64,7 +64,7 @@ class SoapControllerIntegrationTest {
         // Act
         val span: Span = tracer.spanBuilder("soap-endpoint").startSpan()
         span.setAttribute("key", "value")
-        mockMvc.perform(get("/api/soap"))
+        mockMvc.perform(get("/api/another"))
             .andExpect(status().isOk)
         span.end()
 
@@ -78,7 +78,7 @@ class SoapControllerIntegrationTest {
     }
 
     @Test
-    fun `soapGETEndpoint should handle request with existing TraceId`() {
+    fun `anotherGETEndpoint should handle request with existing TraceId`() {
         // Arrange
         listAppender.start()
         logger.addAppender(listAppender)
@@ -104,7 +104,7 @@ class SoapControllerIntegrationTest {
             .setParent(parentSpanContext)
             .startSpan()
         span.setAttribute("key", "value")
-        mockMvc.perform(get("/api/soap"))
+        mockMvc.perform(get("/api/another"))
             .andExpect(status().isOk)
         span.end()
 
@@ -117,7 +117,7 @@ class SoapControllerIntegrationTest {
         inMemorySpanExporter.reset()
     }
     @Test
-    fun `soapGETEndpoint should handle SOAP processing error and return Internal Server Error`() {
+    fun `anotherGETEndpoint should handle SOAP processing error and return Internal Server Error`() {
         // Arrange
         val mockExporter: SpanExporter = mock(SpanExporter::class.java)
         Mockito.`when`(mockExporter.export(any())).thenReturn(CompletableResultCode().fail())
@@ -131,10 +131,10 @@ class SoapControllerIntegrationTest {
         val inMemorySpanExporter = InMemorySpanExporter.create()
 
         // Set up MockMvc
-        val mockMvc: MockMvc = MockMvcBuilders.standaloneSetup(SoapController(tracer)).build()
+        val mockMvc: MockMvc = MockMvcBuilders.standaloneSetup(AnotherController(tracer)).build()
 
         // Act
-        val result = mockMvc.perform(get("/api/soap"))
+        val result = mockMvc.perform(get("/api/another"))
 
         // Assert
         result.andExpect(status().isOk)
