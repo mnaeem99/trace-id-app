@@ -1,0 +1,19 @@
+version: '2'
+services:
+  soap-service:
+    image: openjdk:11
+    container_name: soap-container
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./path/to/soap-app.jar:/app/app.jar
+    command: ["java", "-jar", "/app/app.jar"]
+
+  another-service:
+    image: openjdk:11
+    container_name: another-container
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./path/to/another-app.jar:/app/app.jar
+    command: ["java", "-jar", "/app/app.jar"]
